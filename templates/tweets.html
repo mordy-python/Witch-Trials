@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1 class="w3-center w3-text-theme">The Inside Scoop</h1>
+<h3 class="w3-center w3-text-theme">Tweets From Those Involved</h3>
+    {% for tweet in tweets %}
+    <div style="width:75%;margin: auto;" class="w3-margin-top w3-padding w3-card-4 w3-border w3-border-theme">
+        <h3 class="w3-text-theme">{{tweet.title}}</h3>
+        <hr class="w3-border-theme">
+        <p class="w3-text-theme">{{tweet.content | safe}}</p>
+        <p class="w3-text-blue">{{tweet.by}}</p>
+    </div>
+    {% endfor %}
+{% endblock content %}
