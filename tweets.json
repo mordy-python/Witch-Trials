@@ -1,0 +1,21 @@
+{
+    "tweet4":{
+        "title": "",
+        "content": ""
+    },
+    "tweet3": {
+        "title": "There be Witches Among Us",
+        "content": "It is with deepest regret that I inform You. There are Witches in this very Congregation.",
+        "by": "@RevHale"
+    },
+    "tweet2": {
+        "title": "Please pray for Ruth!",
+        "content": "Ruth, our only child is not well! Her eyes remain open, yet she will not move.",
+        "by": "@GoodyPutnam200"
+    },
+    "tweet1": {
+        "title": "Any Advice Mr. Hale?",
+        "content": "<span class=\"w3-text-blue\">@RevHale</span> My Betty won't wake from her slumber.<br>What do you suggest?",
+        "by": "@RevParris"
+    }
+}
