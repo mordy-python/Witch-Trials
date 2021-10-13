@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='styles.css')}}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
+    <title>Salem Witch Trials | {{title}}</title>
+</head>
+
+<body>
+    <div class="w3-theme w3-bar w3-large">
+        <a href="{{url_for('index')}}" class="w3-theme w3-button w3-hover-theme">Home</a>
+        <a href="{{url_for('tweets')}}" class="w3-theme w3-button w3-hover-theme">The Inside Scoop</a>
+    </div>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for message in messages %}
+    <div class="w3-padding w3-margin w3-small w3-panel w3-pale-red w3-display-container">
+        <span onclick="this.parentElement.style.display='none'"
+            class="w3-button w3-hover-red w3-display-topright">&times;</span>
+        <h5>Warning</h5>
+        <p>{{message}}</p>
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+    <div class="w3-container">
+        {% block content %}
+        {% endblock content %}
+    </div>
+</body>
+
+</html>
