@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% for char in characters %}
+        <div class="w3-card-1 w3-border w3-border-theme">
+            <img src="{{url_for('static', filename=char.img)}}" alt="Person" class="w3-center">
+            
+        </div>
+    {% endfor %}
+{% endblock content %}
