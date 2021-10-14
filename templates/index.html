@@ -1,5 +1,37 @@
 {% extends 'base.html' %}
 {% block content %}
+    <style>
+        .content {
+            display: flex;
+            justify-content: center;
+        }
+        .main {
+            width: 75%;
+        }
+        .section {
+            width: 25%;
+        }
+        a {
+            text-decoration: none;
+        }
+    </style>
     <h1 class="w3-text-theme w3-center">The Salem Witch Trials</h1>
-    
+    <div class="content">
+        <main class="main">
+            <div class="w3-padding-small w3-card-1 w3-border w3-border-theme w3-round w3-margin-right">
+                <h3>{{"what were the salem witch trials?" | title}}</h3>
+            </div>
+        </main>
+        <section class="section w3-hide-small">
+            <div class="w3-padding-small w3-card-1 w3-border w3-border-theme w3-round">
+                <h4 class="w3-text-theme">{{"helpful links" | title}}</h4>
+                <!-- <hr class="w3-border-theme"> -->
+                <ul class="w3-ul">
+                    <li><a class="w3-text-theme-2" href="{{url_for('tweets')}}">{{"tweets about the witch trials" | title}}</a></li>
+                    <li><a class="w3-text-theme-2" href="{{url_for('characters')}}">{{"who was involved?" | title}}</a></li>
+                    <li><a class="w3-text-theme-2" href="{{url_for('report')}}">{{"report a witch" | title}}</a></li>
+                </ul>
+            </div>
+        </section>
+    </div>
 {% endblock content %}
