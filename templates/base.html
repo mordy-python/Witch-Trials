@@ -16,6 +16,8 @@
     <div class="w3-theme w3-bar w3-large">
         <a href="{{url_for('index')}}" class="w3-theme w3-button w3-hover-theme">Home</a>
         <a href="{{url_for('tweets')}}" class="w3-theme w3-button w3-hover-theme">The Inside Scoop</a>
+        <a class="w3-theme w3-button w3-hover-theme w3-hide-large" href="{{url_for('characters')}}">{{"who was involved?" | title}}</a>
+        <a class="w3-theme w3-button w3-hover-theme w3-hide-large" href="{{url_for('report')}}">{{"report a witch" | title}}</a>
     </div>
     {% with messages = get_flashed_messages() %}
     {% if messages %}
