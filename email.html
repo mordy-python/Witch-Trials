@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suspect Confirmation for {{witch}}</title>
+</head>
+<style>
+    h2 {
+        color: #2e4a62;
+    }
+    h3 {
+        color: #315777;
+    }
+    p {
+        font-size: large;
+    }
+    p .evidence{
+        font-size: large;
+        font-family: monospace;
+    }
+</style>
+<body>
+    <div class="main">
+        <h2>Hello, Mister {{name}}</h2>
+        <h3>You have reported {{witch | title}} as a witch.</h3>
+        <p>{{witch | title}} will be investigated and justice will be served.<br>
+            Please review the evidence submitted (attached below) and make sure it is correct.</p>
+            <hr style="border: 1px dashed #456f93;">
+            <p>{{evidence}}</p>
+    </div>
+</body>
+</html>
