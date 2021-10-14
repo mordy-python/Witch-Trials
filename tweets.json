@@ -1,8 +1,28 @@
 {
-    "tweet4":{
-        "title": "",
-        "content": "",
-        "by": ""
+    "tweet8": {
+        "title": "Have you seen Abigail Williams?",
+        "content": "My neice, Abby Williams and Mercy Lewis have not been since the last night. If any one sees the girls, please immediately return them home.",
+        "by": "@RevParris"
+    },
+    "tweet7": {
+        "title": "Bridget Bishop to be hung tomorrow!",
+        "content": "Bridget Bishop, in service of the Devil, will be hung tomorrow morning.",
+        "by": "@RevParris"
+    },
+    "tweet6": {
+        "title": "God Help Salem",
+        "content": "The Devil's infestation runs deep here. May God help you all.",
+        "by": "@RevHale"
+    },
+    "tweet5": {
+        "title": "Tituba Begs of You, Mister Parris",
+        "content": "Mister Parris, Sir, would it please you to pay Tituba's jail fees? Tituba has no love for the Gaol.",
+        "by": "@Tituba"
+    },
+    "tweet4": {
+        "title": "The Four Judges of The Apocalypse",
+        "content": "Get ready Salem! Their Excellencies, <em>Judge Danforth & Co.</em> are on their way to Salem.",
+        "by": "@DanforthAndCo"
     },
     "tweet3": {
         "title": "There be Witches Among Us",
