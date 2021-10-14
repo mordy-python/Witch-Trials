@@ -32,7 +32,7 @@ def tweets():
     twee = []
     for tweet in tweets:
         twee.append(tweets[tweet])
-    return render_template("tweets.html", title="Tweets", tweets=twee)
+    return render_template("tweets.html", title=os.environ['SECRET_KEY'], tweets=twee)
 
 
 @app.route("/witch-report", methods=["GET", "POST"])
