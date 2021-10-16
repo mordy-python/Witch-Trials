@@ -3,13 +3,14 @@
 <style>
     .main {
         display: flex;
+        flex-wrap: wrap;
     }
 </style>
 <div class="main">
     {% for char in characters %}
     <a class="w3-margin" href="{{url_for('character_stuff', name=char.name)}}">
         <div class="w3-margin-top w3-card-1 w3-border w3-border-theme w3-padding" style="width: fit-content;">
-            <h4>{{char.name}}</h4>
+            <h4 class="w3-margin-left">{{char.name}}</h4>
             <img src="{{url_for('static', filename=char.img)}}" alt="Person" class="w3-margin-left img">
         </div>
     </a>

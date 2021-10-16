@@ -22,7 +22,8 @@
         {{character.name}}?</h1>
     <div class="flex">
         <h5>{{character.bio}}</h5>
-        <img class="w3-margin" src="{{url_for('static', filename=character.img)}}" alt="Photo of {{character.name}}">
+        <img class="w3-margin w3-hide-small" src="{{url_for('static', filename=character.img)}}" alt="Photo of {{character.name}}">
     </div>
+    <p class="w3-hide-large">Images cannot be shown on a screen this size. Please use a larger device to view them.</p>
 </div>
 {% endblock content %}
