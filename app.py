@@ -1,5 +1,12 @@
 import os
-from flask import Flask, render_template, render_template_string, request, redirect, url_for, flash
+from flask import (
+    Flask,
+    render_template,
+    request,
+    redirect,
+    url_for,
+    flash,
+)
 from flask_mail import Mail, Message
 import jinja2
 import json
@@ -14,26 +21,75 @@ app.config["MAIL_PASSWORD"] = os.environ.get("SENDGRID_API_KEY")
 app.config["MAIL_DEFAULT_SENDER"] = os.environ.get("EMAIL_ADDR")
 mail = Mail(app)
 
-chars = [{'img':'danforth.jpg', 'name':'Judge Danforth', 'bio':'lorem ipsum yada yada'}]
+chars = [
+    {
+        "img": "danforth.jpg",
+        "name": "Judge Danforth",
+        "bio": "Judge Danforth was deputy governor of Salem and the lead judge in the Salem Witch Trials. He sent 19 people to the gallows in the time he presided over the Trials.",
+    },
+    {
+        "img": "abigail.jpg",
+        "name": "Abigail Williams",
+        "bio": "Abigail Williams was one of the driving forces in the Witch Trials. She accused women in Salem who she didn't like or did something to displease her. When she walked through Salem people would avoid her and attempt to stay on her good side. She ran away with her friend, Mercy Lewis and the Witch Trials died down once she left Salem.",
+    },
+    {
+        "img": "tituba.jpg",
+        "name": "Tituba",
+        "bio": "Tituba was a witch in Salem. She was accused of witchcraft when she confessed she was a witch, she was given the chance to redeem herself if she told Rev. Hale who else she saw with the Devil. She said she saw Goody Good and Goody Osborne with the Devil.",
+    },
+    {
+        "img": "putnam.png",
+        "name": "Thomas Putnam",
+        "bio": "Thomas Putnam was a very influential figure in Salem. He accused many members of the rival Porter Family. He was responsible for the accusations against 43 people. He also accused some of his neighbors so that he could take their land. His daughter Ruth accused 62 people."
+    },
+    {
+        "img": "mercy.png",
+        "name": "Mercy Lewis",
+        "bio": "Mercy Lewis was Abigail's friend and another principal accuser in the Witch Trials. She accused George Burroughs of beating her because she refused to sign his Book of The Devil."
+    },
+    {
+        "img": "parris.jpg",
+        "name": "Reverend Parris",
+        "bio": 'Reverend Samuel Parris was the minister in Salem. He had a strained relationship with the townspeople, he wanted more pay and more money for the church. He was a strong proponent of the Witch Trials and his niece was the main accuser in the Witch Trials. At one point he gave a sermon titled "Christ Knows How Many Devils There Are."',
+    },
+    {
+        "img": "hale.jpeg",
+        "name": "Reverend Hale",
+        "bio": "Reverend John Hale was a minister in nearby Beverly. He was invited to Salem by Rev. Parris to help with finding witches. When he realized how the town was losing its head he left the court and denounced the Witch Trials.",
+    },
+    {
+        "img": "proctor.jpg",
+        "name": "John Proctor",
+        "bio": "John Proctor was married to Elizabeth Proctor. He was arrested and accused of witchcraft when he tried to defend his wife in court. He was given the chance to save himself from hanging if he wrote a confession and signed it. He refused to sign it and ruin his name; he was hung alongside Martha Corey and Rebecca Nurse.",
+    },
+    {
+        "img": "corey.jpg",
+        "name": "Giles Corey",
+        "bio": "He was an farmer in Salem. He and his wife Martha were accused of witchcraft. He was asked to plead either Guilty or Not Guilty but he refused to plea either way. He was pressed with heavy stones and still refused to answer. He died after three days of pressing. His wife Martha refused to confess and was hanged alongside John Proctor and Rebecca Nurse.",
+    },
+]
+
 
 @app.route("/")
 def index():
     return render_template("index.html", title="Home")
 
+
 @app.route("/characters")
 def characters():
     return render_template("characters.html", title="People Involved", characters=chars)
 
+
 @app.route("/characters/<name>")
 def character_stuff(name):
-    # ch = None
     for c in chars:
         for person in c:
-            if c['name'] == name:
+            if c["name"] == name:
                 ch = c
                 break
             continue
     return render_template("character.html", title=name.capitalize(), character=ch)
+
 
 @app.route("/tweets")
 def tweets():
@@ -53,7 +109,9 @@ def report():
         email = request.form["email"]
         witch = request.form["witch"]
         evidence = request.form["evidence"]
-        msg = Message(f"Suspect confirmation for {witch.capitalize()}", recipients=[email])
+        msg = Message(
+            f"Suspect confirmation for {witch.capitalize()}", recipients=[email]
+        )
         msg.body = (
             f"You reported {witch.capitalize()} for witchcraft."
             "This is a serious accusation. Please make sure you posses concrete evidence."
@@ -62,7 +120,9 @@ def report():
         with open("email.html") as email_msg:
             html = email_msg.read()
             email_content = jinja2.Template(html)
-            fina_html = email_content.render(witch=witch, name=your_name, evidence=evidence)
+            fina_html = email_content.render(
+                witch=witch, name=your_name, evidence=evidence
+            )
         msg.html = fina_html
         mail.send(msg)
         flash(f"{witch} was reported.\nLook for a confirmation email.")
