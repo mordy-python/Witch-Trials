@@ -1,42 +1,73 @@
 {% extends 'base.html' %}
 {% block content %}
-    <style>
-        .content {
-            display: flex;
-            justify-content: center;
-        }
-        .main {
-            width: 75%;
-        }
-        .section {
-            width: 25%;
-        }
-        a {
-            text-decoration: none;
-        }
-    </style>
-    <h1 class="w3-text-theme w3-center">The Salem Witch Trials</h1>
-    <div class="content">
-        <main class="main">
-            <div class="w3-padding-small w3-card-1 w3-border w3-border-theme w3-round w3-margin-right">
-                <h3>{{"what were the salem witch trials?" | title}}</h3>
-                <hr class="w3-border-theme">
-                <div>
-                    <p>The Witch Trials started in 1692 after a local doctor pronounced Betty Parris and Abigail Williams bewitched.
-                        
-                    </p>
-                </div>
+<style>
+    .content {
+        display: flex;
+        justify-content: center;
+    }
+
+    .main {
+        width: 75%;
+    }
+
+    .section {
+        width: 25%;
+    }
+
+    a {
+        text-decoration: none;
+    }
+</style>
+<h1 class="w3-text-theme w3-center">The Salem Witch Trials</h1>
+<div class="content">
+    <main class="main">
+        <div class="w3-padding-small w3-card-1 w3-border w3-border-theme w3-round w3-margin-right">
+            <h3 class="w3-text-theme">{{"what were the salem witch trials?" | title}}</h3>
+            <hr class="w3-border-theme">
+            <div>
+                <p>The Salem Witch Trials were a series of investigations that resulted in the hangings of 19 "witches"
+                    and the imprisonment of countless other.
+                </p>
+                <h4 class="w3-text-theme">{{"what caused the salem witch trials?" | title}}</h4>
+                <p>Parris' daughter Betty would not wake up one morning and Salem's doctor could not figure out why. He
+                    pronounced it "The work of the Devil."
+                    The night before, Parris had discovered his daughter, niece, and a few other girls, dancing in the
+                    forest with his slave, Tituba.
+                    Parris sent for the Minister of a nearby town, Reverend John Hale, who had previous experience with
+                    "witches".
+                    When Hale arrived, he examined Betty Parris and confimed that she was bewitched. The girls dancing
+                    with Tituba was mentioned and Reverend Hale interrogated Tituba.</p>
+                <h4 class="w3-text-theme">Tituba's Interrogation</h4>
+                <p>
+                    Reverend Hale asked Tituba if she was in service of the Devil. He told her he was able to help her
+                    and bring her back to God. Titbua confessed that she was a witch.<br>
+                    "Have you seen others with the Devil when he comes to you?" Hale asked Tituba.<br>
+                    At first, Tituba said she had not seen anyone. But when Hale asked the question again, she replied
+                    that yes she had seen others with the Devil.
+                </p>
+                <h4 class="w3-text-theme">The Accusing</h4>
+                <p>
+                    During the examination of Betty and the interrogation of Tituba, Abigail and some of the other girls
+                    who had danced were also in the room. As soon as Tituba said she had seen other women, namely Sarah
+                    Good and Sarah Osborne. As soon as Tituba accused those women as witches, the girls started shouting
+                    that they had been bewitched those women. The women of course, denied any connection to the Devil.
+                    Abigial, the ringleader of the group started to accuse whichever of the women she didn't like. The
+                    Putnams, an influential Salem Family, accused Rebecca Nurse of witchcraft, becuase she tended to
+                    Goody Putnams babies and the all died except for her last child, Ruth.
+                </p>
             </div>
-        </main>
-        <section class="section w3-hide-small">
-            <div class="w3-padding-small w3-card-1 w3-border w3-border-theme w3-round">
-                <h4 class="w3-text-theme">{{"helpful links" | title}}</h4>
-                <ul class="w3-ul">
-                    <li><a class="w3-text-theme-2" href="{{url_for('tweets')}}">{{"tweets about the witch trials" | title}}</a></li>
-                    <li><a class="w3-text-theme-2" href="{{url_for('characters')}}">{{"who was involved?" | title}}</a></li>
-                    <li><a class="w3-text-theme-2" href="{{url_for('report')}}">{{"report a witch" | title}}</a></li>
-                </ul>
-            </div>
-        </section>
-    </div>
+        </div>
+    </main>
+    <section class="section w3-hide-small">
+        <div class="w3-padding-small w3-card-1 w3-border w3-border-theme w3-round">
+            <h4 class="w3-text-theme">{{"helpful links" | title}}</h4>
+            <ul class="w3-ul">
+                <li><a class="w3-text-theme-2" href="{{url_for('tweets')}}">{{"tweets about the witch trials" |
+                        title}}</a></li>
+                <li><a class="w3-text-theme-2" href="{{url_for('characters')}}">{{"who was involved?" | title}}</a></li>
+                <li><a class="w3-text-theme-2" href="{{url_for('report')}}">{{"report a witch" | title}}</a></li>
+            </ul>
+        </div>
+    </section>
+</div>
 {% endblock content %}
