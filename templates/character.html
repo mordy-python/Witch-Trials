@@ -1,6 +1,28 @@
 {% extends 'base.html' %}
 {% block content %}
-    <div class="w3-margin-top w3-padding">
-        <h1 class="w3-center w3-margin-right">Who Was {{character.name}}?</h1>
+<style>
+    .icon {
+        text-decoration: none;
+    }
+
+    img {
+        height: 50vh;
+        width: auto;
+    }
+    .flex {
+        display: flex;
+    }
+    .flex h5 {
+        text-align: justify;
+    }
+</style>
+<div class="w3-margin-top w3-padding">
+    <a class="w3-text-theme-2 w3-dsiplay-right material-icons icon" href="javascript: history.back();">arrow_back</a>
+    <h1 class="w3-center w3-margin-right w3-text-theme">Who Was
+        {{character.name}}?</h1>
+    <div class="flex">
+        <h5>{{character.bio}}</h5>
+        <img class="w3-margin" src="{{url_for('static', filename=character.img)}}" alt="Photo of {{character.name}}">
     </div>
+</div>
 {% endblock content %}
