@@ -23,9 +23,9 @@
     {% with messages = get_flashed_messages() %}
     {% if messages %}
     {% for message in messages %}
-    <div class="w3-padding w3-margin w3-small w3-panel w3-pale-red w3-display-container">
+    <div class="w3-padding w3-margin w3-small w3-panel w3-pale-green w3-display-container">
         <span onclick="this.parentElement.style.display='none'"
-            class="w3-button w3-hover-red w3-display-topright">&times;</span>
+            class="w3-button w3-hover-green w3-display-topright">&times;</span>
         <h5>Warning</h5>
         <p>{{message}}</p>
     </div>
