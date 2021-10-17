@@ -1,16 +1,12 @@
 import os
-from flask import (
-    Flask,
-    render_template,
-    request,
-    redirect,
-    url_for,
-    flash,
-)
+from flask import Flask, render_template, request, redirect, url_for, flash, session
 from flask_mail import Mail, Message
 import jinja2
 import json
+from deta import Deta
+from dotenv import load_dotenv
 
+load_dotenv()
 app = Flask(__name__)
 app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
 app.config["MAIL_SERVER"] = "smtp.sendgrid.net"
@@ -20,7 +16,9 @@ app.config["MAIL_USERNAME"] = "apikey"
 app.config["MAIL_PASSWORD"] = os.environ.get("SENDGRID_API_KEY")
 app.config["MAIL_DEFAULT_SENDER"] = os.environ.get("EMAIL_ADDR")
 mail = Mail(app)
-
+key = os.environ.get("DETA_PROJECT_KEY")
+deta = Deta(key)
+suspects = deta.Base("suspected_witches")
 chars = [
     {
         "img": "danforth.jpg",
@@ -40,12 +38,12 @@ chars = [
     {
         "img": "putnam.png",
         "name": "Thomas Putnam",
-        "bio": "Thomas Putnam was a very influential figure in Salem. He accused many members of the rival Porter Family. He was responsible for the accusations against 43 people. He also accused some of his neighbors so that he could take their land. His daughter Ruth accused 62 people."
+        "bio": "Thomas Putnam was a very influential figure in Salem. He accused many members of the rival Porter Family. He was responsible for the accusations against 43 people. He also accused some of his neighbors so that he could take their land. His daughter Ruth accused 62 people.",
     },
     {
         "img": "mercy.png",
         "name": "Mercy Lewis",
-        "bio": "Mercy Lewis was Abigail's friend and another principal accuser in the Witch Trials. She accused George Burroughs of beating her because she refused to sign his Book of The Devil."
+        "bio": "Mercy Lewis was Abigail's friend and another principal accuser in the Witch Trials. She accused George Burroughs of beating her because she refused to sign his Book of The Devil.",
     },
     {
         "img": "parris.jpg",
@@ -73,6 +71,19 @@ chars = [
 @app.route("/")
 def index():
     return render_template("index.html", title="Home")
+
+
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    if 'username' in session:
+        return redirect(url_for('admin'))
+    if request.method == "POST":
+        username = request.form["username"]
+        password = request.form["password"]
+        if username == "RevParris" and password == "w1tchtr14l5":
+            session["username"] = "RevParris"
+            return redirect(url_for("admin"))
+    return render_template("login.html")
 
 
 @app.route("/characters")
@@ -109,6 +120,14 @@ def report():
         email = request.form["email"]
         witch = request.form["witch"]
         evidence = request.form["evidence"]
+        suspects.insert(
+            {
+                "name": your_name,
+                "email": email,
+                "witch": witch,
+                "evidence": evidence,
+            }
+        )
         msg = Message(
             f"Suspect confirmation for {witch.capitalize()}", recipients=[email]
         )
@@ -129,6 +148,18 @@ def report():
         return redirect(url_for("index"))
     return render_template("report.html", title="Report A Witch")
 
-
+@app.route("/admin")
+def admin():
+    if "username" in session:
+        witches = suspects.fetch()
+        return render_template("admin.html", suspects=witches.items)
+    return redirect(url_for("login"))
+@app.route('/delete-witch')
+def delete_witch():
+    if "username" in session:
+        key = request.args.get('key')
+        suspects.delete(key)
+        flash('Deleted Witch')
+        return redirect(url_for('admin'))
 if __name__ == "__main__":
     app.run(debug=True)
