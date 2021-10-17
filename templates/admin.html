@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3 class="w3-text-theme w3-center">Suspected Witches</h3>
+<table class="w3-table w3-border w3-border-theme">
+    <th>Reported By</th>
+    <th>Email</th>
+    <th>Witch Name</th>
+    <th>Evidence</th>
+    {% for suspect in suspects %}
+    <tr>
+        <td>{{suspect.name}}</td>
+        <td>{{suspect.email}}</td>
+        <td>{{suspect.witch}}</td>
+        <td>{{suspect.evidence}}
+        <td>
+        <td><a href="{{url_for('delete_witch', key=suspect.key)}}" class="w3-button w3-hover-red w3-text-red w3-round"><span class="material-icons">
+                    delete
+                </span></a></td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock content %}
